@@ -3,7 +3,37 @@ const bcryptjs = require('bcryptjs');
 const encrypt = require('../helpers/encryption');
 const User = require('../models/user');
 
-const login = (req,res=response)=>{
+const login = async (req,res=response)=>{
+    const {email, password} = req.body;
+    try {
+        const user = await User.findOne({email}) //Exist the user?
+        if(!user){
+            return res.status(400).json({
+                msg:'The user could not be found'
+            })
+        }
+        if(!user.available){
+            return res.status(400).json({
+                msg:'The user was deleted'
+            })
+        }
+        
+        const validPassword = bcryptjs.compareSync(password, user.password);
+        if(!validPassword){
+            return res.status(400).json({
+                msg:'Your email or password are incorrect'
+            })
+        }
+        return res.json({
+            user
+        })
+
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({
+            msg:'An error occurred in the server'
+        })
+    }
     res.json({
         tes:'ting'
     })
