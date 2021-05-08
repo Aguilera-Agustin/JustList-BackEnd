@@ -17,6 +17,7 @@ router.post('/login',[
 router.post('/register',[
     check('email','Email is not valid').not().isEmpty(),
     check('email','Email is not valid').isEmail(),
+    check('name','Name is not valid').not().isEmpty(),
     check('password','Password is not valid').not().isEmpty(),
     check('password','Password is too short').isLength(5),
     check('email').custom( emailIsAlreadyExists ),
