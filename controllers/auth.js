@@ -7,7 +7,13 @@ const login = (req,res=response)=>{
         tes:'ting'
     })
 }
+const register = (req,res=response)=>{
+    res.json({
+        test:'Register'
+    })
+}
 
 module.exports={
-    login
+    login,
+    register
 }

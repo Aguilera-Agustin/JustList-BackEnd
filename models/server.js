@@ -1,5 +1,6 @@
 const express = require('express');
 const cors = require('cors');
+const { dbConnection } = require('../database/config');
 
 class Server {
 
@@ -14,16 +15,23 @@ class Server {
         
         //Init all of routes
         this.routes();
+
+        //Init DB connection
+        this.connectDb();
     }
 
     middlewares(){
         this.app.use(cors());
         this.app.use(express.json());
-        this.app.use(express.static('public'))
+        this.app.use(express.static('public'));
     }
 
     routes(){
-        this.app.use(this.paths.auth, require('../routes/auth'))
+        this.app.use(this.paths.auth, require('../routes/auth'));
+    }
+
+    async connectDb(){
+        await dbConnection();
     }
 
     listen() {
@@ -31,6 +39,7 @@ class Server {
             console.log('Server running on port', this.port );
         });
     }
+
 
 }
 
