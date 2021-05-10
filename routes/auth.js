@@ -1,9 +1,11 @@
 const { Router } = require('express');
 const { check } = require('express-validator');
-const { login } = require('../controllers/auth');
+const { login, loginWithToken } = require('../controllers/auth');
 const { register } = require('../controllers/auth');
 const { emailIsAlreadyExists } = require('../helpers/dbValidations');
+const { validateJWT } = require('../helpers/validateJWT');
 const { retrieveErrors } = require('../middlewares/retrieveErrors');
+const { existsUserWithId } = require('../helpers/dbValidations')
 const router = Router();
 
 
@@ -23,5 +25,10 @@ router.post('/register',[
     check('email').custom( emailIsAlreadyExists ),
     retrieveErrors
 ],register );
+
+router.get('/login/token',[
+    validateJWT,
+    retrieveErrors    
+],loginWithToken)
 
 module.exports = router;
