@@ -29,7 +29,7 @@ const getCategory = async (req, res=response)=>{
     const { limit = 5, init = 0 } = req.query;
     const query = { available: true,  user: req.user._id};
 
-    const [ counter, categorys ] = await Promise.all([
+    const [ counter, categories ] = await Promise.all([
         Category.countDocuments(query),
         Category.find(query)
             .skip( Number( init ) )
@@ -38,7 +38,7 @@ const getCategory = async (req, res=response)=>{
 
     res.json({
         counter,
-        categorys
+        categories
     });
 }
 const modifyCategory = async (req=request, res=response)=>{
