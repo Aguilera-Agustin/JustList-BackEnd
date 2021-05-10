@@ -9,7 +9,8 @@ class Server {
         this.port=process.env.PORT;
         this.paths={
             auth:'/api/auth',
-            notes:'/api/notes'
+            notes:'/api/notes',
+            category: '/api/category'
         }
         //Init all of middlewares
         this.middlewares();
@@ -30,6 +31,7 @@ class Server {
     routes(){
         this.app.use(this.paths.auth, require('../routes/auth'));
         this.app.use(this.paths.notes, require('../routes/notes'));
+        this.app.use(this.paths.category, require('../routes/category'));
         
     }
 
