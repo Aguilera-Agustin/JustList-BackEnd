@@ -10,19 +10,25 @@ const login = async (req,res=response)=>{
         const user = await User.findOne({email}) //Exist the user?
         if(!user){
             return res.status(400).json({
-                msg:'The user could not be found'
+                errors:[{
+                    msg:'The user could not be found'
+                }]
             })
         }
         if(!user.available){
             return res.status(400).json({
-                msg:'The user was deleted'
+                errors:[{
+                    msg:'The user was deleted'
+                }]
             })
         }
         
         const validPassword = bcryptjs.compareSync(password, user.password);
         if(!validPassword){
             return res.status(400).json({
-                msg:'Your email or password are incorrect'
+                errors:[{
+                    msg:'Your email or password are incorrect'
+                }]
             })
         }
         const token = await generateJWT(user._id);
@@ -34,7 +40,9 @@ const login = async (req,res=response)=>{
     } catch (error) {
         console.log(error);
         res.status(500).json({
-            msg:'An error occurred in the server'
+            error:[{
+                msg:'An error occurred in the server'
+            }]
         })
     }
     res.json({

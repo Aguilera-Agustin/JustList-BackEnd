@@ -7,6 +7,7 @@ const emailIsAlreadyExists = async (email="")=>{
     }
 }
 
+
 module.exports={
     emailIsAlreadyExists
 }
