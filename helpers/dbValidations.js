@@ -7,7 +7,14 @@ const emailIsAlreadyExists = async (email="")=>{
     }
 }
 
+const existsUserWithId = async (id="")=>{
+    const user = await User.findById(id)
+    if(!user){
+        throw new Error('User not found')
+    }
+}
 
 module.exports={
-    emailIsAlreadyExists
+    emailIsAlreadyExists,
+    existsUserWithId
 }

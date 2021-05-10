@@ -59,7 +59,13 @@ const register = async(req,res=response)=>{
     })
 }
 
+const loginWithToken = async (req, res=response)=>{
+    const user = req.user
+    res.json({user})
+}
+
 module.exports={
     login,
-    register
+    register,
+    loginWithToken
 }
