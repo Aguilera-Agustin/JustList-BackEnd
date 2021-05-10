@@ -52,8 +52,10 @@ const register = async(req,res=response)=>{
     const user = new User({email, name, password});
     user.password=encryptedPassword
     await user.save();
+    const token = await generateJWT(user._id);
     res.json({
-        user
+        user,
+        token
     })
 }
 
