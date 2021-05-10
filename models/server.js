@@ -8,7 +8,8 @@ class Server {
         this.app=express();
         this.port=process.env.PORT;
         this.paths={
-            auth:'/api/auth'
+            auth:'/api/auth',
+            notes:'/api/notes'
         }
         //Init all of middlewares
         this.middlewares();
@@ -28,6 +29,8 @@ class Server {
 
     routes(){
         this.app.use(this.paths.auth, require('../routes/auth'));
+        this.app.use(this.paths.notes, require('../routes/notes'));
+        
     }
 
     async connectDb(){
