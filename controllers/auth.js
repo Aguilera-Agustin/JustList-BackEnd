@@ -45,9 +45,6 @@ const login = async (req,res=response)=>{
             }]
         })
     }
-    res.json({
-        tes:'ting'
-    })
 }
 const register = async(req,res=response)=>{
     const {name, password, email} =req.body;
