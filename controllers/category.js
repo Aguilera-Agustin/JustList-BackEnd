@@ -2,7 +2,7 @@ const { response, request } = require("express");
 const Category = require("../models/category");
 
 const createCategory = async(req, res=response)=>{
-    const {name} = req.body;
+    const {name, color='red'} = req.body;
     const categoryDB = await Category.findOne({name})
     if(categoryDB){
         res.status(400).json({
@@ -14,6 +14,7 @@ const createCategory = async(req, res=response)=>{
 
     const data = { 
         name, 
+        color,
         user : req.user._id
     }
 
@@ -26,7 +27,7 @@ const createCategory = async(req, res=response)=>{
     
 }
 const getCategory = async (req, res=response)=>{
-    const { limit = 5, init = 0 } = req.query;
+    const { limit = 90, init = 0 } = req.query;
     const query = { available: true,  user: req.user._id};
 
     const [ counter, categories ] = await Promise.all([

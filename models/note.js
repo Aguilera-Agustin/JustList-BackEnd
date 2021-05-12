@@ -10,14 +10,14 @@ const NoteSchema = Schema({
         type: 'boolean',
         default: true
     },
-    description:{
+    content:{
         type: 'string',
         required: [true,'Description is required']
     },
-    user:{
+    category:{
         type:Schema.Types.ObjectId,
-        ref: 'User', 
-        required: true
+        ref:'Category', 
+        required:true
     }
 });
 
