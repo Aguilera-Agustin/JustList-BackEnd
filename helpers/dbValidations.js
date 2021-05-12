@@ -1,3 +1,4 @@
+const Category = require('../models/category');
 const User = require('../models/user')
 
 const emailIsAlreadyExists = async (email="")=>{
@@ -13,8 +14,17 @@ const existsUserWithId = async (id="")=>{
         throw new Error('User not found')
     }
 }
+const existCategoryWithId = async (id="")=>{
+    const myCategory = await Category.findById(id)
+    if(!myCategory){
+        throw new Error('Category not found')
+    }
+}
+
+
 
 module.exports={
     emailIsAlreadyExists,
-    existsUserWithId
+    existsUserWithId,
+    existCategoryWithId
 }
