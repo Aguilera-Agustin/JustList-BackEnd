@@ -1,6 +1,6 @@
 const { Router } = require('express');
 const { check } = require('express-validator');
-const { createNote, getNotes, modifyNote } = require('../controllers/notes');
+const { createNote, getNotes, modifyNote, deleteNote } = require('../controllers/notes');
 const { retrieveErrors } = require('../middlewares/retrieveErrors');
 const { validateJWT } = require('../helpers/validateJWT');
 const router = Router();
@@ -21,5 +21,10 @@ router.put('/',[
     validateJWT,
     retrieveErrors
 ], modifyNote );
+
+router.delete('/',[
+    validateJWT,
+    retrieveErrors
+], deleteNote );
 
 module.exports = router;
