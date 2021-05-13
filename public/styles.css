@@ -1,0 +1,37 @@
+body {
+  font-family: "Anton", sans-serif;
+}
+
+main {
+  width: 100%;
+  height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+h1 {
+  font-size: 9rem;
+  transition: 0.2s ease all;
+  filter: drop-shadow(5px 5px 0px yellow);
+}
+h1:hover {
+  filter: drop-shadow(5px 5px 10px yellow);
+}
+.link_container {
+  width: 90%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.link {
+  text-decoration: none;
+  transition: 0.2s ease all;
+  color: black;
+  filter: drop-shadow(2px 2px 0px yellow);
+}
+
+.link:hover {
+  filter: drop-shadow(2px 2px 10px yellow);
+}
