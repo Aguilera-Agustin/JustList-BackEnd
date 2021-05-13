@@ -7,7 +7,6 @@ const emailIsAlreadyExists = async (email="")=>{
         throw new Error(`The email ${email} is already in use`)
     }
 }
-
 const existsUserWithId = async (id="")=>{
     const user = await User.findById(id)
     if(!user){
