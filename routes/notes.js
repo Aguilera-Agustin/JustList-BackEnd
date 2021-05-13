@@ -13,7 +13,9 @@ router.get('/',[
 router.post('/',[
     validateJWT,
     check('title','Title is required').not().isEmpty(),
+    check('title','Title is too long').isLength({min:1, max:20}),
     check('content','Content is required').not().isEmpty(),
+    check('content','Are you a QA tester? Nice! haha').isLength({min:1,max:350}),
     retrieveErrors
 ], createNote );
 

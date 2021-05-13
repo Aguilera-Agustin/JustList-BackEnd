@@ -2,6 +2,7 @@ const { response, request } = require("express");
 const Category = require("../models/category");
 
 const createCategory = async(req, res=response)=>{
+    console.log("Entro");
     const {name, color='red'} = req.body;
     const categoryDB = await Category.findOne({name})
     if(categoryDB){
