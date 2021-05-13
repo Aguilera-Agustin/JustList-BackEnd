@@ -1,9 +1,9 @@
 const { Router } = require('express');
 const { check } = require('express-validator');
-const { createCategory, getCategory, modifyCategory, deleteCategory } = require('../controllers/Category');
 const { retrieveErrors } = require('../middlewares/retrieveErrors');
 const { validateJWT } = require('../helpers/validateJWT');
 const { existCategoryWithId } = require('../helpers/dbValidations');
+const { getCategory, deleteCategory, createCategory } = require('../controllers/category');
 const router = Router();
 
 
@@ -16,13 +16,6 @@ router.post('/',[
     validateJWT,
     retrieveErrors
 ], createCategory );
-
-router.put('/:id',[
-    validateJWT,
-    check('id', 'Invalid ID').isMongoId(),
-    check('id').custom(existCategoryWithId),
-    retrieveErrors
-], modifyCategory );
 
 router.delete('/:id',[
     validateJWT,
